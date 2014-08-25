@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  from: MyString
+  to: MyString
+  start_date: 2014-06-17
+  return_date: 2014-06-17
+  prices: MyString
+  return_prices: MyString
+
+two:
+  title: MyString
+  from: MyString
+  to: MyString
+  start_date: 2014-06-17
+  return_date: 2014-06-17
+  prices: MyString
+  return_prices: MyString

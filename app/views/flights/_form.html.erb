@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class= "row">
+    <div class= "col-md-10 offset1">
+      <strong> Only for own use. </strong>
+      <p> How it works: </p>
+      <p> Open <%= link_to "flights search", "http://www.skyscanner.com", target: "_blank" %>, choose from and to options. Choose maximum range of dates for search and start search. </p>
+      <p> Then, copy url link. And start search here. It will find all variants of dates in range.</p>
+      <div class="field">
+        <strong><%= f.label :title %></strong><br>
+        <%= f.text_field :title %>
+      </div>
+      <div class="field">
+        <strong><%= f.label :url %></strong>(Example: <%= link_to "search", "http://www.skyscanner.com.ua/transport/flights/kiev/blr/141005/141015/airfares-from-kiev-to-bengaluru-in-october-2014.html?rtn=1", target: "_blank" %>)<br>
+        <%= f.text_field :url %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Start Search", id: "search_button" %>
+      </div>
+    </div>
+  </div>
+</div>

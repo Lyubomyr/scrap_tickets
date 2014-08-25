@@ -1,0 +1,13 @@
+%table.table
+  %thead
+    %tr
+      %th From
+      %th To
+      %th Price
+
+  %tbody
+    - results.each do |flight|
+      %tr
+        %td= flight.from
+        %td= flight.to
+        %td= flight.price
