@@ -2,7 +2,7 @@ require 'open-uri'
 require 'rubygems'
 require 'capybara'
 require 'capybara/dsl'
-require 'capybara-webkit'
+require 'capybara/poltergeist'
 require 'active_record'
 
 class Scrapper
@@ -15,13 +15,14 @@ class Scrapper
 
   attr_reader :title, :url, :dates, :from, :to, :from_to_range, :weekend_range, :search_count
 
-  def initialize(options={})
+  def initialize(search)
     # options
     @weekend_range = 7
 
     # varibles
-    @title = options[:title]
-    @url = options[:url]
+    @search = search
+    @title = @search.title
+    @url = @search.url
     # @url_parts = @url.split(/\d{6}\/\d{6}/)
     @dates = @url[/\d{6}\/\d{6}/].split("/")
     @from = @dates[0].to_i
@@ -30,9 +31,10 @@ class Scrapper
     @search_count = search_count()
 
     # Capybara options
+    Capybara.default_driver    = :webkit
+    Capybara.javascript_driver = :webkit
     Capybara.default_wait_time = 60
-    Capybara.run_server = false
-    Capybara.current_driver = :webkit
+    # Capybara.run_server = false
   end
 
   def start
@@ -42,9 +44,10 @@ class Scrapper
         @url = update_url(from, to)
         @from = from
         @to = to
-        price = search()
-        flight = Flight.new(title: @title, url: @url, from: @from, to: @to, price: price)
-        flight.save ? count += 1 : (pp flight.errors.full_messages)
+        if price = search()
+          flight = @search.flights.build(url: @url, from: @from, to: @to, price: price)
+          flight.save ? count += 1 : (pp flight.errors.full_messages)
+        end
       end
     end
   end
@@ -57,7 +60,6 @@ class Scrapper
       row = first("li.day-list-item.clearfix")
       price = row.find(".mainquote a.mainquote-price").text()
       stop = Time.now
-      # gon.watch.search_time =  * (stop - start).round
       price
     end
 

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'skyscanner', to: "skyscanner#show"
+  resources :tests
 
-  post "search" => "flights#search", as: :seach_flights
-  get "flights" => "flights#index"
-  root "flights#index"
+  resources :searches
+  root "searches#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

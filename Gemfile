@@ -16,7 +16,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem "haml"
 gem 'capybara'
 gem 'capybara-webkit'
-gem 'selenium-webdriver'
+# gem 'poltergeist'
+# gem 'selenium-webdriver'
 gem 'pg'
 gem 'gon'
 gem "twitter-bootstrap-rails"
