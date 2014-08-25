@@ -2,7 +2,6 @@ require 'open-uri'
 require 'rubygems'
 require 'capybara'
 require 'capybara/dsl'
-require 'capybara/poltergeist'
 require 'active_record'
 
 class Scrapper

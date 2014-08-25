@@ -17,7 +17,7 @@ gem "haml"
 gem 'capybara'
 gem 'capybara-webkit'
 # gem 'poltergeist'
-# gem 'selenium-webdriver'
+gem 'selenium-webdriver'
 gem 'pg'
 gem 'gon'
 gem "twitter-bootstrap-rails"
