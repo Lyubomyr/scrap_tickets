@@ -1,8 +1,9 @@
+require 'active_record'
 require 'open-uri'
 require 'rubygems'
 require 'capybara'
 require 'capybara/dsl'
-require 'active_record'
+require 'capybara/poltergeist'
 
 class Scrapper
   include ScrapperHelper
@@ -30,8 +31,8 @@ class Scrapper
     @search_count = search_count()
 
     # Capybara options
-    Capybara.default_driver    = :webkit
-    Capybara.javascript_driver = :webkit
+    Capybara.default_driver    = :poltergeist
+    Capybara.javascript_driver = :poltergeist
     Capybara.default_wait_time = 60
     # Capybara.run_server = false
   end

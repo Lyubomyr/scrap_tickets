@@ -15,8 +15,8 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem "haml"
 gem 'capybara'
-gem 'capybara-webkit'
-# gem 'poltergeist'
+# gem 'capybara-webkit'
+gem 'poltergeist'
 gem 'selenium-webdriver'
 gem 'pg'
 gem 'gon'
