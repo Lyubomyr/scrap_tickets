@@ -16,7 +16,6 @@ test:
   <<: *default
   database: st_test
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+test:
+  <<: *default
+  database: st_prod

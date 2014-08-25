@@ -19,7 +19,7 @@ gem 'capybara'
 # gem 'capybara-webkit'
 gem 'poltergeist'
 gem 'selenium-webdriver'
-gem 'pg'
+gem 'pg', group: :production
 gem 'gon'
 gem "twitter-bootstrap-rails"
 
