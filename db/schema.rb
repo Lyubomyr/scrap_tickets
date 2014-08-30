@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140825142704) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "flights", force: true do |t|
     t.integer  "search_id"
     t.string   "url"

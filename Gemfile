@@ -21,13 +21,18 @@ gem 'selenium-webdriver'
 gem 'pg'
 gem 'gon'
 gem "twitter-bootstrap-rails"
+gem 'capistrano'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-gem 'capybara-screenshot',        group: :development
+group :development do
+  gem 'spring'
+  gem 'capybara-screenshot'
+end
 
-gem 'rails_12factor', group: :production
-gem 'unicorn', group: :production
+group  :production do
+  gem 'unicorn'
+  gem 'mysql2'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
