@@ -1,2 +1,2 @@
-https://github.com/jtarchie/capybara-webkit-buildpack.git
+http://github.com/douglasjsellers/heroku-xvfb-buildpack
 https://github.com/heroku/heroku-buildpack-ruby
