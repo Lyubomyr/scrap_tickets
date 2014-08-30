@@ -29,17 +29,16 @@ module ScrapperHelper
 
   def wait_for_search
     wait_until do
-      page.has_no_css?(".day-searching-message", visible: true)
+      page.has_no_css?(".day-searching-message")
     end
-    puts page.has_content?("Searching...", visible: true)
     wait_until(600) do
-      page.has_no_content?("Searching...", visible: true)
+      page.has_no_content?("Searching...")
     end
   end
   def wait_for_autocomplite
     wait_until do
-      # page.has_css?("#from-autosuggest.autosuggest li.active", visible: true)
-      page.has_css?("div.ss_as > ul", visible: true)
+      # page.has_css?("#from-autosuggest.autosuggest li.active")
+      page.has_css?("div.ss_as > ul")
     end
   end
 

@@ -9,20 +9,29 @@ class SearchesController < ApplicationController
     @search = Search.new
   end
 
-  def create
-    @search = Search.find_or_initialize_by search_params
-    respond_to do |format|
-      if @search.save
-        scrapper = Scrapper.new(@search)
-        scrapper.start
-        @results = @search.flights
-        format.js { render :results }
-      else
-        format.html { render :new }
-      end
-    end
-  end
+  # def create
+  #   @search = Search.find_or_initialize_by search_params
+  #   respond_to do |format|
+  #     if @search.save
+  #       scrapper = Scrapper.new(@search)
+  #       scrapper.test
+  #       @results = @search.flights
+  #       format.js { render :results }
+  #     else
+  #       format.html { render :new }
+  #     end
+  #   end
+  # end
 
+  def create
+    test = Struct.new("Test", :title, :url).new
+    test.title = "test"
+    test.url = "http://www.google.com"
+    pp test.url
+    scrapper = Scrapper.new(test)
+    scrapper.test
+    render nothing: true
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
