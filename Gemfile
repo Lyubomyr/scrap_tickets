@@ -29,7 +29,6 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'spring'
-  gem 'capybara-screenshot'
 end
 
 group  :production do
