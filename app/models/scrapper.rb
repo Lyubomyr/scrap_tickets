@@ -33,6 +33,7 @@ class Scrapper
     Capybara.default_driver    = :webkit
     Capybara.javascript_driver = :webkit
     Capybara.default_wait_time = 60
+    Capybara.run_server = false
   end
 
   def start
