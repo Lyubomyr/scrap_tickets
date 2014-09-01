@@ -3,7 +3,6 @@ require 'open-uri'
 require 'rubygems'
 require 'capybara'
 require 'capybara/dsl'
-require 'capybara-screenshot'
 
 class Scrapper
   include ScrapperHelper
@@ -31,8 +30,8 @@ class Scrapper
     # @search_count = search_count()
 
     # Capybara options
-    @screenshot_path = Rails.root.join("tmp", "capybara")
-    Capybara.save_and_open_page_path = @screenshot_path
+    # @screenshot_path = Rails.root.join("tmp", "capybara")
+    # Capybara.save_and_open_page_path = @screenshot_path
     Capybara.default_driver    = :webkit
     Capybara.javascript_driver = :webkit
     Capybara.default_wait_time = 60
