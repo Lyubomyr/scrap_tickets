@@ -1,8 +1,14 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :rvm_ruby_version, 'ruby-2.1.2@ff'
-set :rvm_type, :system
+set :default_environment, {
+  'PATH' => "/usr/local/rvm/gems/ruby-2.1.2/bin:/usr/local/rvm/bin:/usr/local/rvm/rubies/ruby-2.1.2/bin:$PATH",
+  'RUBY_VERSION' => 'ruby 2.1.2',
+  'GEM_HOME'     => '/usr/local/rvm/gems/ruby-2.1.2',
+  'GEM_PATH'     => '/usr/local/rvm/gems/ruby-2.1.2',
+  'BUNDLE_PATH'  => '/usr/local/bin'  # If you are using bundler.
+}
+# set :rvm_ruby_version, 'ruby-2.1.2@ff'
 
 set :monit_restart, false
 
@@ -18,13 +24,8 @@ set :use_sudo, false
 set :keep_releases, 5
 set :log_level, :debug
 
-set :linked_dirs, fetch(:linked_dirs, []) + %w{log tmp/pids tmp/sockets vendor/bundle public/system}
-
-set :normalize_asset_timestamps, false
-
-on :start do
- `ssh-add`
-end
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 SSHKit.config.command_map[:rake]  = "bundle exec rake"
 
@@ -68,7 +69,7 @@ namespace :deploy do
   task :copy_conf_files do
     on roles(:app) do |host|
       execute "cp -f #{release_path}/config/deploy/#{fetch(:stage)}/unicorn.rb #{release_path}/config/"
-      execute "cp -f #{release_path}/config/deploy/#{fetch(:stage)}/application.yml #{release_path}/config/"
+      # execute "cp -f #{release_path}/config/deploy/#{fetch(:stage)}/application.yml #{release_path}/config/"
       execute "cp -f #{release_path}/config/deploy/#{fetch(:stage)}/robots.txt #{release_path}/public/"
     end
   end
@@ -140,20 +141,20 @@ end
 namespace :background do
   desc "background::restart"
   task :restart do
-    if fetch(:monit_restart)
-      desc "use monit for restart backgroung processes"
-      # Use passwordless approach: on server side you need to do the next command:
-      # sudo visudo -f /etc/sudoers
-      # # Add the next line to the end of file
-      # USER ALL=(ALL) NOPASSWD:monit -g evolux restart all
-      on roles(:app) do
-        execute :sudo, "monit -g evolux restart all"
-      end
-    else
+  #   if fetch(:monit_restart)
+  #     desc "use monit for restart backgroung processes"
+  #     # Use passwordless approach: on server side you need to do the next command:
+  #     # sudo visudo -f /etc/sudoers
+  #     # # Add the next line to the end of file
+  #     # USER ALL=(ALL) NOPASSWD:monit -g scrap_tickets restart all
+  #     on roles(:app) do
+  #       execute :sudo, "monit -g scrap_tickets restart all"
+  #     end
+  #   else
       invoke 'deploy:restart'
-      invoke 'scheduler:restart'
-      invoke 'resque:restart'
-    end
+      # invoke 'scheduler:restart'
+      # invoke 'resque:restart'
+    # end
   end
 
   after :restart, :clear_cache do
