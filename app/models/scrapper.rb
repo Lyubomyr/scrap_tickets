@@ -22,20 +22,17 @@ class Scrapper
     @search = search
     @title = @search.title
     @url = @search.url
-    # # @url_parts = @url.split(/\d{6}\/\d{6}/)
-    # @dates = @url[/\d{6}\/\d{6}/].split("/")
-    # @from = @dates[0].to_i
-    # @to = @dates[1].to_i
-    # @from_to_range = @to - @from
-    # @search_count = search_count()
+    # @url_parts = @url.split(/\d{6}\/\d{6}/)
+    @dates = @url[/\d{6}\/\d{6}/].split("/")
+    @from = @dates[0].to_i
+    @to = @dates[1].to_i
+    @from_to_range = @to - @from
+    @search_count = search_count()
 
     # Capybara options
-    # @screenshot_path = Rails.root.join("tmp", "capybara")
-    # Capybara.save_and_open_page_path = @screenshot_path
     Capybara.default_driver    = :webkit
     Capybara.javascript_driver = :webkit
     Capybara.default_wait_time = 60
-    # Capybara.run_server = false
   end
 
   def start
@@ -60,15 +57,12 @@ class Scrapper
   protected
     def search
       start = Time.now
-      # visit @url
-      visit "http://www.skyscanner.com"
-      # visit "http://www.skyscanner.com.ua/transport/flights/kiev/blr/141003/141013/airfares-from-kiev-to-bengaluru-in-october-2014.html"
-      Capybara::Screenshot.screenshot_and_open_image
-      # wait_for_search
-      # row = first("li.day-list-item.clearfix")
-      # price = row.find(".mainquote a.mainquote-price").text()
-      # stop = Time.now
-      # price
+      visit @url
+      wait_for_search
+      row = first("li.day-list-item.clearfix")
+      price = row.find(".mainquote a.mainquote-price").text()
+      stop = Time.now
+      price
     end
 
     def update_url(from, to)
