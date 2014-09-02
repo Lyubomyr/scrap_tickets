@@ -13,7 +13,7 @@ set :rails_env, 'production'
 set :branch,  ENV['branch'] || "master"
 
 # set :rvm_type, :user
-# set :rvm_ruby_string, 'ruby-2.1.2@ff'
-# set :rvm_ruby_version, '2.1.2p95'
+set :rvm_ruby_string, 'ruby-2.1.2@ff'
+set :rvm_ruby_version, '2.1.2p95'
 
-set :monit_restart, true
+set :monit_restart, false

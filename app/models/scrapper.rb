@@ -5,7 +5,7 @@ require 'rubygems'
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/webkit'
-require 'headless'
+# require 'headless'
 
 class Scrapper
   include ScrapperHelper
@@ -40,10 +40,10 @@ class Scrapper
     Capybara.register_driver :webkit do |app|
       Capybara::Driver::Webkit.new(app, :ignore_ssl_errors => true)
     end
-    if Rails.env.production?
-      headless = Headless.new
-      headless.start
-    end
+    # if Rails.env.production?
+    #   headless = Headless.new
+    #   headless.start
+    # end
   end
 
   def start
