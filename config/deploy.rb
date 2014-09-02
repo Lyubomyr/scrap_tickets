@@ -5,7 +5,8 @@ set :default_environment, {
   'PATH' => "/usr/local/rvm/gems/ruby-2.1.2/bin:/usr/local/rvm/bin:/usr/local/rvm/rubies/ruby-2.1.2/bin:$PATH",
   'RUBY_VERSION' => 'ruby 2.1.2',
   'GEM_HOME'     => '/usr/local/rvm/gems/ruby-2.1.2',
-  'GEM_PATH'     => '/usr/local/rvm/gems/ruby-2.1.2'
+  'GEM_PATH'     => '/usr/local/rvm/gems/ruby-2.1.2',
+  'BUNDLE_PATH'  => '/usr/local/rvm/gems/ruby-2.1.2@global/bin/bundle'  # If you are using bundler.
 }
 set :rvm_ruby_version, 'ruby-2.1.2@ff'
 set :rvm_type, :system
@@ -189,4 +190,4 @@ after 'deploy:publishing', 'background:restart'
 # after 'deploy:publishing', 'scheduler:restart'
 # after 'deploy:publishing', 'resque:restart'
 
-# after 'deploy:publishing', 'bundler:bundle_new_release'
+after 'deploy:publishing', 'bundler:bundle_new_release'
