@@ -36,6 +36,9 @@ class Scrapper
     Capybara.javascript_driver = :webkit
     Capybara.default_wait_time = 60
     Capybara.run_server = false
+    Capybara.register_driver :webkit do |app|
+      Capybara::Driver::Webkit.new(app, :ignore_ssl_errors => true)
+    end
   end
 
   def start

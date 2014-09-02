@@ -190,4 +190,4 @@ after 'deploy:publishing', 'background:restart'
 # after 'deploy:publishing', 'scheduler:restart'
 # after 'deploy:publishing', 'resque:restart'
 
-# after 'deploy:publishing', 'bundler:bundle_new_release'
+after 'deploy:publishing', 'bundler:bundle_new_release'
