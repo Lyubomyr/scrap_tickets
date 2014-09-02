@@ -1,8 +1,10 @@
+# require File.expand_path("../../config/environment", __FILE__)
 require 'active_record'
 require 'open-uri'
 require 'rubygems'
 require 'capybara'
 require 'capybara/dsl'
+require 'capybara/webkit'
 
 class Scrapper
   include ScrapperHelper

@@ -8,7 +8,8 @@ set :default_environment, {
   'GEM_PATH'     => '/usr/local/rvm/gems/ruby-2.1.2',
   'BUNDLE_PATH'  => '/usr/local/bin'  # If you are using bundler.
 }
-# set :rvm_ruby_version, 'ruby-2.1.2@ff'
+set :rvm_ruby_version, 'ruby-2.1.2@ff'
+set :rvm_type, :system
 
 set :monit_restart, false
 
@@ -69,7 +70,7 @@ namespace :deploy do
   task :copy_conf_files do
     on roles(:app) do |host|
       execute "cp -f #{release_path}/config/deploy/#{fetch(:stage)}/unicorn.rb #{release_path}/config/"
-      # execute "cp -f #{release_path}/config/deploy/#{fetch(:stage)}/application.yml #{release_path}/config/"
+      execute "cp -f #{release_path}/config/deploy/#{fetch(:stage)}/application.yml #{release_path}/config/"
       execute "cp -f #{release_path}/config/deploy/#{fetch(:stage)}/robots.txt #{release_path}/public/"
     end
   end
@@ -189,5 +190,4 @@ after 'deploy:publishing', 'background:restart'
 # after 'deploy:publishing', 'scheduler:restart'
 # after 'deploy:publishing', 'resque:restart'
 
-after 'deploy:publishing', 'bundler:bundle_new_release'
-
+# after 'deploy:publishing', 'bundler:bundle_new_release'
