@@ -21,7 +21,7 @@ gem 'selenium-webdriver'
 gem 'pg'
 gem 'gon'
 gem "twitter-bootstrap-rails"
-
+gem "headless"
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development do
   gem 'capistrano'
