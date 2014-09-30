@@ -1,5 +1,3 @@
-%h1 Listing flights
-= image_tag 'loader.gif', alt: "Loading...", class: 'loading'
-= form_for @search, { remote: true } do |f|
-  = render "form", f: f
-#results_list
+%h1 Listing of all Searches
+- @searches.each do |search|
+  %li= link_to search.title, search

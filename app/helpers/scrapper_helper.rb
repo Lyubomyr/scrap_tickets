@@ -27,7 +27,7 @@ module ScrapperHelper
     end
   end
 
-  def wait_for_search
+  def wait_for_search(page = page)
     wait_until do
       page.has_no_css?(".day-searching-message")
     end

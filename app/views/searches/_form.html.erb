@@ -2,10 +2,7 @@
   <div class= "row">
     <div class= "col-md-10 offset1">
       <strong> Only for own use. </strong>
-      <p> How it works: </p>
-      <p> Open <%= link_to "flights search", "http://www.skyscanner.com", target: "_blank" %>, choose from and to options. Choose maximum range of dates for search and start search. </p>
-      <p> Then, copy url link. And start search here. It will find all variants of dates in range.</p>
-      <%= form_for(@search, remote: true) do |f| %>
+      <%= form_for(@search) do |f| %>
         <% if @search.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@search.errors.count, "error") %> prohibited this search from being saved:</h2>

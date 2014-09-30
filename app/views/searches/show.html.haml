@@ -1,0 +1,26 @@
+%h3= "Title: #{@search.title}"
+%h3= "Status: #{@search.status}"
+%h3= "Run at: #{@search.created_at.localtime}"
+%h4= "Url: #{@search.url}"
+
+%h1 Search Results:
+- flights = @search.flights
+- min_price = to_price(flights.where("price IS NOT NULL").minimum(:price))
+- depart_range = (@search.depart - @search.search_range)..(@search.depart + @search.search_range)
+- return_range = (@search.return - @search.search_range)..(@search.return + @search.search_range)
+%table.table
+  %thead
+    %tr
+      %th Return \ Departure
+      - depart_range.each do |depart_date|
+        %th= depart_date
+  %tbody
+    - return_range.each do |return_date|
+      %tr
+        %th= return_date
+        - depart_range.each do |depart_date|
+          - price = flights.by_dates(depart_date, return_date).try(:price)
+          - url = flights.by_dates(depart_date, return_date).try(:url)
+          %td.price{class: "#{depart_date} #{return_date} #{'min_price' if to_price(price) <= min_price}"}= price && url ? link_to(price, url, target: "_blank") : 0
+
+= link_to "Rerun search", rerun_search_search_path(@search)

@@ -8,14 +8,14 @@ set :default_environment, {
   'GEM_PATH'     => '/usr/local/rvm/gems/ruby-2.1.2',
   'BUNDLE_PATH'  => '/usr/local/rvm/gems/ruby-2.1.2@global/bin/bundle'  # If you are using bundler.
 }
-set :rvm_ruby_version, 'ruby-2.1.2@ff'
+set :rvm_ruby_version, 'ruby-2.1.2@letsfly'
 set :rvm_type, :system
 
 set :monit_restart, false
 
 set :application, 'findfly'
 set :scm, "git"
-set :repo_url, 'git@github.com:Lyubomyr/scrap_tickets.git'
+set :repo_url, 'git@github.com:Lyubomyr/letsfly.git'
 set :server, :unicorn
 
 set :ssh_options, {:forward_agent => true}
@@ -147,9 +147,9 @@ namespace :background do
   #     # Use passwordless approach: on server side you need to do the next command:
   #     # sudo visudo -f /etc/sudoers
   #     # # Add the next line to the end of file
-  #     # USER ALL=(ALL) NOPASSWD:monit -g scrap_tickets restart all
+  #     # USER ALL=(ALL) NOPASSWD:monit -g letsfly restart all
   #     on roles(:app) do
-  #       execute :sudo, "monit -g scrap_tickets restart all"
+  #       execute :sudo, "monit -g letsfly restart all"
   #     end
   #   else
       invoke 'deploy:restart'

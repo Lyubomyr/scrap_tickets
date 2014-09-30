@@ -1,4 +1,19 @@
-%h1 Search
-= image_tag 'loader.gif', alt: "Loading...", class: 'loading'
-= render "form"
-#results_list
+.container
+  .row
+    .col-md-6
+      %h1 Search
+      = image_tag 'loader.gif', alt: "Loading...", class: 'loading'
+      = render "form"
+    .col-md-6
+      %br
+      %br
+      = link_to "All previous searches.", searches_path
+      %br
+      %br
+      %br
+      #find_results
+        %h3 Find your previous search by title
+        = form_tag(find_search_searches_path, method: :get) do
+          = text_field_tag :title
+          = submit_tag "Find"
+          = submit_tag "Restart Search", restart: true

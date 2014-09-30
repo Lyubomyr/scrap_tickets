@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :tests
 
-  resources :searches
+  resources :searches do
+    get :rerun_search, on: :member
+    get :find_search, on: :collection
+  end
   root "searches#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
